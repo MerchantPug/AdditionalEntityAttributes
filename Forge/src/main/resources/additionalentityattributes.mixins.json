@@ -1,0 +1,17 @@
+{
+	"minVersion": "0.8.5",
+	"required": true,
+	"package": "de.dafuqs.additionalentityattributes.mixin",
+	"compatibilityLevel": "JAVA_17",
+	"mixins": [
+		"common.LivingEntityMixin",
+		"common.PlayerEntityMixin"
+	],
+	"client": [
+		"client.BackgroundRendererMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	},
+	"refmap": "additionalentityattributes.refmap.json"
+}

@@ -1,0 +1,17 @@
+modLoader="javafml"
+license="MIT"
+loaderVersion="[39,)"
+
+[[mods]]
+modId="additionalentityattributes"
+displayName="Additional Entity Attributes"
+version="${file.jarVersion}"
+authors=["DaFuqs", "Apace100"]
+description='''
+Additional Entity Attributes
+'''
+
+[[dependencies.additionalentityattributes]]
+modId="minecraft"
+mandatory=true
+versionRange="[1.18.2]"
