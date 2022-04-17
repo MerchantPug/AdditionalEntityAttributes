@@ -70,6 +70,7 @@ sourceSets.main.resources.srcDir 'src/generated/resources'
 dependencies {
 	minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
 	compileOnly project(":Common")
+	annotationProcessor group: 'org.spongepowered', name: 'mixin', version: '0.8.5', classifier: 'processor'
 }
 
 tasks.withType(JavaCompile) {
