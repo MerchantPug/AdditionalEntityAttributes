@@ -15,10 +15,16 @@ import net.minecraftforge.registries.ForgeRegistries;
 public class AdditionalEntityAttributesMod {
 	public static final DeferredRegister<Attribute> ATTRIBUTE = DeferredRegister.create(ForgeRegistries.ATTRIBUTES, AdditionalEntityAttributes.MOD_ID);
 
+	private static void registerAttributes(EntityAttributeModificationEvent event) {
+		for (Attribute attribute : RegistryService.INSTANCE.getAttributes()) {
+			event.getTypes().forEach(type -> event.add(type, attribute));
+		}
+	}
+
 	public AdditionalEntityAttributesMod() {
 		IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
 		ATTRIBUTE.register(bus);
-		bus.addListener((EntityAttributeModificationEvent event) -> RegistryService.INSTANCE.getAttributes().forEach(attribute -> event.getTypes().forEach(type -> event.add(type, attribute))));
+		bus.addListener(AdditionalEntityAttributesMod::registerAttributes);
 		AdditionalEntityAttributes.initialize();
 	}
 }

@@ -52,12 +52,18 @@ public class AdditionalEntityAttributes {
 	 */
 	public static final Attribute LAVA_VISIBILITY = createAttribute("lava_visibility", 1.0, 0, 1024.0);
 
+	/*
+		Controls the dig speed of the player
+	*/
+	public static final Attribute DIG_SPEED = createAttribute("generic.dig_speed", 0.0D, 0.0D, 2048.0D);
+
 	public static void initialize() {
 		RegistryService.INSTANCE.registerAttribute("critical_bonus_damage", CRITICAL_BONUS_DAMAGE);
 		RegistryService.INSTANCE.registerAttribute("water_speed", WATER_SPEED);
 		RegistryService.INSTANCE.registerAttribute("water_visibility", WATER_VISIBILITY);
 		RegistryService.INSTANCE.registerAttribute("lava_speed", LAVA_SPEED);
 		RegistryService.INSTANCE.registerAttribute("lava_visibility", LAVA_VISIBILITY);
+		RegistryService.INSTANCE.registerAttribute("dig_speed", DIG_SPEED);
 	}
 
 	private static Attribute createAttribute(final String name, double base, double min, double max) {
