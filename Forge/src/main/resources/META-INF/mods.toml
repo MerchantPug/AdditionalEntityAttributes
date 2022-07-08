@@ -1,6 +1,6 @@
 modLoader="javafml"
 license="MIT"
-loaderVersion="[39,)"
+loaderVersion="[41,)"
 
 [[mods]]
 modId="additionalentityattributes"
@@ -14,4 +14,4 @@ Additional Entity Attributes
 [[dependencies.additionalentityattributes]]
 modId="minecraft"
 mandatory=true
-versionRange="[1.18.2]"
+versionRange="[1.19,1.20)"
