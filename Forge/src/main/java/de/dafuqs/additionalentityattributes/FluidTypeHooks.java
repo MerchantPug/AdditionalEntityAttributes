@@ -1,8 +1,6 @@
 package de.dafuqs.additionalentityattributes;
 
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.level.material.FluidState;
-import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.common.extensions.IForgeLivingEntity;
 import net.minecraftforge.fluids.FluidType;
