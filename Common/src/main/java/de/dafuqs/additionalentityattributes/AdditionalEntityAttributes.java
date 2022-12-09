@@ -1,8 +1,5 @@
 package de.dafuqs.additionalentityattributes;
 
-import net.minecraft.core.Registry;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.RangedAttribute;
 
@@ -78,6 +75,12 @@ public class AdditionalEntityAttributes {
 	 */
 	public static final Attribute DROPPED_EXPERIENCE = createAttribute("player.dropped_experience", 1.0D, 0.0D, 1024.0D);
 
+	/**
+	 * Reduces the amount of magic damage taken.
+	 * By default, the player has 0 points, and each point of reduces the damage taken by 1.
+	 */
+	public static final Attribute MAGIC_PROTECTION = createAttribute("player.magic_protection", 0.0D, 0.0D, 1024.0D);
+
 	public void initialize() {
 		RegistryService.INSTANCE.registerAttribute("critical_bonus_damage", CRITICAL_BONUS_DAMAGE);
 		RegistryService.INSTANCE.registerAttribute("water_speed", WATER_SPEED);
@@ -88,6 +91,7 @@ public class AdditionalEntityAttributes {
 		RegistryService.INSTANCE.registerAttribute("bonus_rare_loot_rolls", BONUS_RARE_LOOT_ROLLS);
 		RegistryService.INSTANCE.registerAttribute("bonus_loot_count_rolls", BONUS_LOOT_COUNT_ROLLS);
 		RegistryService.INSTANCE.registerAttribute("dropped_experience", DROPPED_EXPERIENCE);
+		RegistryService.INSTANCE.registerAttribute("magic_protection", MAGIC_PROTECTION);
 	}
 	
 	private static Attribute createAttribute(final String name, double base, double min, double max) {
