@@ -1,5 +1,5 @@
 plugins {
-	id 'fabric-loom' version '0.12-SNAPSHOT'
+	id 'fabric-loom' version '1.2-SNAPSHOT'
 	id 'idea'
 }
 
@@ -14,6 +14,7 @@ dependencies {
 }
 
 loom {
+	accessWidenerPath.set(project(":Common").file("src/main/resources/${archives_base_name}.accesswidener"))
 	runs {
 		client {
 			client()

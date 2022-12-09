@@ -8,6 +8,7 @@ archivesBaseName = "${archives_base_name}-common-${minecraft_version}"
 
 minecraft {
 	version (minecraft_version)
+	accessWideners "src/main/resources/${archives_base_name}.accesswidener"
 	runs { }
 }
 

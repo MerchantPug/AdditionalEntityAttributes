@@ -1,5 +1,8 @@
 package de.dafuqs.additionalentityattributes;
 
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.RangedAttribute;
 
@@ -52,20 +55,41 @@ public class AdditionalEntityAttributes {
 	 */
 	public static final Attribute LAVA_VISIBILITY = createAttribute("lava_visibility", 1.0, 0, 1024.0);
 
-	/*
-		Controls the dig speed of the player
+	/**
+	 * Controls the dig speed of the player
 	*/
 	public static final Attribute DIG_SPEED = createAttribute("generic.dig_speed", 0.0D, 0.0D, 2048.0D);
+	
+	/**
+	 * Controls the drops the player gets when using enchantments, such as looting or fortune
+	 * (more precise: everything that uses the ApplyBonusLootFunction to increase drops based on an enchantments level)
+	 * Each full +1 on this stat will roll the bonus count another time. Highest one is kept.
+	 */
+	public static final Attribute BONUS_LOOT_COUNT_ROLLS = createAttribute("generic.bonus_loot_count_rolls", 0.0D, 0.0D, 128.0);
 
-	public static void initialize() {
+	/**
+	 *
+	 */
+	public static final Attribute BONUS_RARE_LOOT_ROLLS = createAttribute("generic.bonus_rare_loot_rolls", 0.0D, 0.0D, 128.0);
+	
+	/**
+	 * Modifies the experience dropped from mining blocks and killing mobs.
+	 * The default of 1.0 equals the vanilla drop amount, 0.0 will result in no xp drops altogether
+	 */
+	public static final Attribute DROPPED_EXPERIENCE = createAttribute("player.dropped_experience", 1.0D, 0.0D, 1024.0D);
+
+	public void initialize() {
 		RegistryService.INSTANCE.registerAttribute("critical_bonus_damage", CRITICAL_BONUS_DAMAGE);
 		RegistryService.INSTANCE.registerAttribute("water_speed", WATER_SPEED);
 		RegistryService.INSTANCE.registerAttribute("water_visibility", WATER_VISIBILITY);
 		RegistryService.INSTANCE.registerAttribute("lava_speed", LAVA_SPEED);
 		RegistryService.INSTANCE.registerAttribute("lava_visibility", LAVA_VISIBILITY);
 		RegistryService.INSTANCE.registerAttribute("dig_speed", DIG_SPEED);
+		RegistryService.INSTANCE.registerAttribute("bonus_rare_loot_rolls", BONUS_RARE_LOOT_ROLLS);
+		RegistryService.INSTANCE.registerAttribute("bonus_loot_count_rolls", BONUS_LOOT_COUNT_ROLLS);
+		RegistryService.INSTANCE.registerAttribute("dropped_experience", DROPPED_EXPERIENCE);
 	}
-
+	
 	private static Attribute createAttribute(final String name, double base, double min, double max) {
 		return new RangedAttribute("attribute.name.generic." + MOD_ID + '.' + name, base, min, max).setSyncable(true);
 	}
