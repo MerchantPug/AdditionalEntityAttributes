@@ -20,7 +20,7 @@ public abstract class BlockMixin {
 	
 	private Player additionalEntityAttributes$breakingPlayer;
 	
-	@ModifyArg(method = "popExperience", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/ExperienceOrb;award(Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/phys/Vec3;I)V"), index = 2)
+	@ModifyArg(method = "popExperience", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/ExperienceOrb;award(Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/phys/Vec3;I)V"))
 	private int additionalEntityAttributes$modifyExperience(int originalXP) {
 		return (int) (originalXP * Support.getExperienceMod(additionalEntityAttributes$breakingPlayer));
 	}
