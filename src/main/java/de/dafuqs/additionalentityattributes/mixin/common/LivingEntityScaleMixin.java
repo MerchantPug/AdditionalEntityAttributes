@@ -40,6 +40,7 @@ public abstract class LivingEntityScaleMixin {
             additionalEntityAttributes$previousHitboxWidth = hitboxWidth;
             additionalEntityAttributes$previousHitboxHeight = hitboxHeight;
             additionalEntityAttributes$hasInitializedDimensions = true;
+            thisAsLiving.calculateDimensions();
             return;
         }
 
@@ -55,20 +56,6 @@ public abstract class LivingEntityScaleMixin {
         if (updateScales) {
             thisAsLiving.calculateDimensions();
         }
-    }
-
-    @ModifyVariable(method = "modifyAppliedDamage", at = @At(value = "LOAD", ordinal = 4), argsOnly = true)
-    private float additionalEntityAttributes$reduceMagicDamage(float damage, DamageSource source) {
-        EntityAttributeInstance magicProt = ((LivingEntity) (Object) this).getAttributeInstance(AdditionalEntityAttributes.MAGIC_PROTECTION);
-
-        if (magicProt == null) {
-            return damage;
-        }
-
-        if (source.isIn(DamageTypeTags.WITCH_RESISTANT_TO) && magicProt.getValue() > 0) {
-            damage = (float) Math.max(damage - magicProt.getValue(), 0);
-        }
-        return damage;
     }
 
     @ModifyReturnValue(method = "getDimensions", at = @At("RETURN"))

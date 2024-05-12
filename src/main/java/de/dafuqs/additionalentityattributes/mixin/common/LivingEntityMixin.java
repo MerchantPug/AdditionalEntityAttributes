@@ -26,6 +26,15 @@ public abstract class LivingEntityMixin {
         info.getReturnValue().add(AdditionalEntityAttributes.WATER_SPEED);
         info.getReturnValue().add(AdditionalEntityAttributes.LAVA_SPEED);
         info.getReturnValue().add(AdditionalEntityAttributes.LUNG_CAPACITY);
+        info.getReturnValue().add(AdditionalEntityAttributes.WIDTH);
+        info.getReturnValue().add(AdditionalEntityAttributes.HEIGHT);
+        info.getReturnValue().add(AdditionalEntityAttributes.HITBOX_SCALE);
+        info.getReturnValue().add(AdditionalEntityAttributes.HITBOX_WIDTH);
+        info.getReturnValue().add(AdditionalEntityAttributes.HITBOX_HEIGHT);
+        info.getReturnValue().add(AdditionalEntityAttributes.MODEL_SCALE);
+        info.getReturnValue().add(AdditionalEntityAttributes.MODEL_WIDTH);
+        info.getReturnValue().add(AdditionalEntityAttributes.MODEL_HEIGHT);
+        info.getReturnValue().add(AdditionalEntityAttributes.MOB_DETECTION_RANGE);
         info.getReturnValue().add(AdditionalEntityAttributes.JUMP_HEIGHT);
         info.getReturnValue().add(AdditionalEntityAttributes.MAGIC_PROTECTION);
     }
@@ -110,16 +119,16 @@ public abstract class LivingEntityMixin {
         return damage;
     }
 
-    @ModifyReturnValue(method = "getJumpVelocity", at = @At("RETURN"))
+    @ModifyReturnValue(method = "getJumpVelocity(F)F", at = @At("RETURN"))
     public float additionalEntityAttributes$modifyJumpVelocity(float original) {
         EntityAttributeInstance instance = ((LivingEntity) (Object) this).getAttributeInstance(AdditionalEntityAttributes.JUMP_HEIGHT);
 
         if (instance != null) {
             float totalAmount = original;
             for (EntityAttributeModifier modifier : instance.getModifiers()) {
-                float amount = (float) modifier.getValue();
+                float amount = (float) modifier.value();
 
-                if (modifier.getOperation() == EntityAttributeModifier.Operation.ADDITION)
+                if (modifier.operation() == EntityAttributeModifier.Operation.ADD_VALUE)
                     totalAmount += amount;
                 else
                     totalAmount *= (amount + 1);

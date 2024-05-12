@@ -49,14 +49,7 @@ public class Support {
 
 		EntityAttributeInstance instance = entity.getAttributeInstance(attribute);
 		if (instance != null) {
-			for (EntityAttributeModifier modifier : instance.getModifiers()) {
-				float amount = (float) modifier.getValue();
-
-				if (modifier.getOperation() == EntityAttributeModifier.Operation.ADDITION)
-					value += amount;
-				else
-					value *= (amount + 1);
-			}
+			value = instance.getValue();
 		}
 
 		return MathHelper.clamp(value, MIN_SCALE, MAX_SCALE);
@@ -70,9 +63,9 @@ public class Support {
 		EntityAttributeInstance instance = entity.getAttributeInstance(AdditionalEntityAttributes.MOB_DETECTION_RANGE);
 		if (instance != null) {
 			for (EntityAttributeModifier modifier : instance.getModifiers()) {
-				float amount = (float) modifier.getValue();
+				float amount = (float) modifier.value();
 
-				if (modifier.getOperation() == EntityAttributeModifier.Operation.ADDITION)
+				if (modifier.operation() == EntityAttributeModifier.Operation.ADD_VALUE)
 					original += amount;
 				else
 					original *= (amount + 1);

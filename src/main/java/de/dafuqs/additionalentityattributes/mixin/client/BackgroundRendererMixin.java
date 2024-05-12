@@ -51,7 +51,7 @@ public abstract class BackgroundRendererMixin {
 		}
 	}
 	
-	@ModifyConstant(method = "applyFog", constant = @Constant(floatValue = 3.0F, ordinal = 0))
+	@ModifyConstant(method = "applyFog", constant = @Constant(floatValue = 5.0F, ordinal = 0))
 	private static float additionalEntityAttributes$modifyLavaVisibilityMaxWithFireResistance(float original, Camera camera) {
 		EntityAttributeInstance lavaVisibilityAttribute = MinecraftClient.getInstance().player.getAttributeInstance(AdditionalEntityAttributes.LAVA_VISIBILITY);
 		if (lavaVisibilityAttribute == null) {
