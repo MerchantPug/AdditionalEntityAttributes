@@ -7,8 +7,7 @@
   "authors": [
     "DaFuqs",
     "Apace100",
-    "Noaaan",
-    "MerchantPug"
+    "Noaaan"
   ],
   "contact": {
     "website": "https://github.com/DaFuqs/AdditionalEntityAttributes",
@@ -32,6 +31,6 @@
   "depends": {
     "fabricloader": ">=0.15",
     "fabric-api": "*",
-    "minecraft": ">=1.20.5-"
+    "minecraft": ">=1.20.5"
   }
 }
