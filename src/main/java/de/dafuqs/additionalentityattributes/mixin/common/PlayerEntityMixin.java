@@ -18,7 +18,6 @@ public abstract class PlayerEntityMixin {
 		info.getReturnValue().add(AdditionalEntityAttributes.WATER_VISIBILITY);
 		info.getReturnValue().add(AdditionalEntityAttributes.LAVA_VISIBILITY);
 		info.getReturnValue().add(AdditionalEntityAttributes.CRITICAL_BONUS_DAMAGE);
-		info.getReturnValue().add(AdditionalEntityAttributes.DIG_SPEED);
 		info.getReturnValue().add(AdditionalEntityAttributes.BONUS_LOOT_COUNT_ROLLS);
 		info.getReturnValue().add(AdditionalEntityAttributes.BONUS_RARE_LOOT_ROLLS);
 		info.getReturnValue().add(AdditionalEntityAttributes.DROPPED_EXPERIENCE);
@@ -36,24 +35,6 @@ public abstract class PlayerEntityMixin {
 		} else {
 			return 1 + (float) criticalDamageMultiplier.getValue();
 		}
-	}
-	
-	@ModifyVariable(method = "getBlockBreakingSpeed", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/effect/StatusEffectUtil;hasHaste(Lnet/minecraft/entity/LivingEntity;)Z"), index = 2)
-	private float additionalEntityAttributes$adjustBlockBreakingSpeed(float f) {
-		EntityAttributeInstance instance = ((LivingEntity) (Object) this).getAttributeInstance(AdditionalEntityAttributes.DIG_SPEED);
-		
-		if (instance != null) {
-			for (EntityAttributeModifier modifier : instance.getModifiers()) {
-				float amount = (float) modifier.value();
-				
-				if (modifier.operation() == EntityAttributeModifier.Operation.ADD_VALUE)
-					f += amount;
-				else
-					f *= (amount + 1);
-			}
-		}
-		
-		return f;
 	}
 	
 	@ModifyVariable(method = "tickMovement", at = @At("STORE"))

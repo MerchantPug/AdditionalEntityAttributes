@@ -5,8 +5,6 @@
   "attribute.name.additionalentityattributes.generic.lava_speed.desc": "Increases movement speed in Lava",
   "attribute.name.additionalentityattributes.generic.lung_capacity": "Lung Capacity",
   "attribute.name.additionalentityattributes.generic.lung_capacity.desc": "Increases the time before suffocating",
-  "attribute.name.additionalentityattributes.generic.jump_height": "Jump Height",
-  "attribute.name.additionalentityattributes.generic.jump_height.desc": "Increases jump height",
   "attribute.name.additionalentityattributes.generic.magic_protection": "Magic Protection",
   "attribute.name.additionalentityattributes.generic.magic_protection.desc": "Decreases damage from magical damage sources",
 
@@ -16,8 +14,6 @@
   "attribute.name.additionalentityattributes.player.water_visibility.desc": "Increases view range in Water",
   "attribute.name.additionalentityattributes.player.lava_visibility": "Lava Vision",
   "attribute.name.additionalentityattributes.player.lava_visibility.desc": "Increases view range in Lava",
-  "attribute.name.additionalentityattributes.player.dig_speed": "Mining Speed",
-  "attribute.name.additionalentityattributes.player.dig_speed.desc": "Increases the speed when mining blocks",
   "attribute.name.additionalentityattributes.player.bonus_rare_loot_rolls": "Additional Rare Loot Rolls",
   "attribute.name.additionalentityattributes.player.bonus_rare_loot_rolls.desc": "Increases chance for drops that are not guaranteed",
   "attribute.name.additionalentityattributes.player.bonus_loot_count_rolls": "Additional Enchantment Loot Rolls",

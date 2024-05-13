@@ -26,7 +26,6 @@ public abstract class LivingEntityMixin {
         info.getReturnValue().add(AdditionalEntityAttributes.WATER_SPEED);
         info.getReturnValue().add(AdditionalEntityAttributes.LAVA_SPEED);
         info.getReturnValue().add(AdditionalEntityAttributes.LUNG_CAPACITY);
-        info.getReturnValue().add(AdditionalEntityAttributes.JUMP_HEIGHT);
         info.getReturnValue().add(AdditionalEntityAttributes.MAGIC_PROTECTION);
     }
 
@@ -109,30 +108,5 @@ public abstract class LivingEntityMixin {
         }
         return damage;
     }
-
-    @ModifyReturnValue(method = "getJumpVelocity", at = @At("RETURN"))
-    public float additionalEntityAttributes$modifyJumpVelocity(float original) {
-        EntityAttributeInstance instance = ((LivingEntity) (Object) this).getAttributeInstance(AdditionalEntityAttributes.JUMP_HEIGHT);
-
-        if (instance != null) {
-            float totalAmount = original;
-            for (EntityAttributeModifier modifier : instance.getModifiers()) {
-                float amount = (float) modifier.value();
-                
-                if (modifier.operation() == EntityAttributeModifier.Operation.ADD_VALUE)
-                    totalAmount += amount;
-                else
-                    totalAmount *= (amount + 1);
-            }
-
-            // Players will run this method twice, so we have to do
-            // some math to make sure that it's accurate.
-            if ((LivingEntity)(Object)this instanceof PlayerEntity) {
-                totalAmount = original + (totalAmount - original) / 2;
-            }
-            original = totalAmount;
-        }
-
-        return original;
-    }
+    
 }

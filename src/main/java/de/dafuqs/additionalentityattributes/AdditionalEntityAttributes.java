@@ -60,11 +60,6 @@ public class AdditionalEntityAttributes implements ModInitializer {
 	 * Controls the vision of the player when in lava by adjusting the fog distance
 	 */
 	public static final RegistryEntry<EntityAttribute> LAVA_VISIBILITY = register("player.lava_visibility", 1.0, 0, 1024.0);
-
-	/**
-	 * Controls the dig speed of the player
-	*/
-	public static final RegistryEntry<EntityAttribute> DIG_SPEED = register("player.dig_speed", 0.0D, 0.0D, 2048.0D);
 	
 	/**
 	 * Controls the drops the player gets when using enchantments, such as looting or fortune
@@ -84,12 +79,6 @@ public class AdditionalEntityAttributes implements ModInitializer {
 	 * - `BONUS_RARE_LOOT_ROLLS = 0.5` will result in another roll with 5% chance
 	 */
 	public static final RegistryEntry<EntityAttribute> BONUS_RARE_LOOT_ROLLS = register("player.bonus_rare_loot_rolls", 0.0D, 0.0D, 128.0);
-
-	/**
-	 * Controls the jump height of the player.
-	 * By default, the player jumps at a height of 0.42.
-	 */
-	public static final RegistryEntry<EntityAttribute> JUMP_HEIGHT = register("generic.jump_height", 0.0D, -1024.0, 1024.0);
 	
 	/**
 	 * Modifies the experience dropped from mining blocks and killing mobs.
