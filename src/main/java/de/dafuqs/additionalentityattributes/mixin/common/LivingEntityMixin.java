@@ -1,7 +1,6 @@
 package de.dafuqs.additionalentityattributes.mixin.common;
 
-import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
-import com.llamalad7.mixinextras.injector.ModifyReturnValue;
+import com.llamalad7.mixinextras.injector.*;
 import de.dafuqs.additionalentityattributes.*;
 import net.fabricmc.api.*;
 import net.minecraft.entity.*;
@@ -118,9 +117,9 @@ public abstract class LivingEntityMixin {
         if (instance != null) {
             float totalAmount = original;
             for (EntityAttributeModifier modifier : instance.getModifiers()) {
-                float amount = (float) modifier.getValue();
-
-                if (modifier.getOperation() == EntityAttributeModifier.Operation.ADDITION)
+                float amount = (float) modifier.value();
+                
+                if (modifier.operation() == EntityAttributeModifier.Operation.ADD_VALUE)
                     totalAmount += amount;
                 else
                     totalAmount *= (amount + 1);

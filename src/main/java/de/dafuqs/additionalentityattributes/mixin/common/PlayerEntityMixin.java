@@ -44,9 +44,9 @@ public abstract class PlayerEntityMixin {
 		
 		if (instance != null) {
 			for (EntityAttributeModifier modifier : instance.getModifiers()) {
-				float amount = (float) modifier.getValue();
+				float amount = (float) modifier.value();
 				
-				if (modifier.getOperation() == EntityAttributeModifier.Operation.ADDITION)
+				if (modifier.operation() == EntityAttributeModifier.Operation.ADD_VALUE)
 					f += amount;
 				else
 					f *= (amount + 1);
