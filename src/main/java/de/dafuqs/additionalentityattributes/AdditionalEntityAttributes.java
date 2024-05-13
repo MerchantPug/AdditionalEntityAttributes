@@ -104,10 +104,10 @@ public class AdditionalEntityAttributes implements ModInitializer {
 	public static final RegistryEntry<EntityAttribute> MAGIC_PROTECTION = register("generic.magic_protection", 0.0D, 0.0D, 1024.0D);
 
 	/**
-	 * Increases the range to collect items, blocks .
-	 * By default, the player has 0 points, and each point of reduces the damage taken by 1.
+	 * Increases the range to collect items and experience in blocks
+	 * By default, vanilla uses a hitbox that is 1 block bigger than the players hitbox (or their mount)
 	 */
-	public static final RegistryEntry<EntityAttribute> COLLECTION_RANGE = register("player.collection_range", 0.0D, 0.0D, 64.0D);
+	public static final RegistryEntry<EntityAttribute> COLLECTION_RANGE = register("player.collection_range", 0.0D, -64.0D, 64.0D);
 	
 	
 	private static RegistryEntry<EntityAttribute> register(final String name, double base, double min, double max) {

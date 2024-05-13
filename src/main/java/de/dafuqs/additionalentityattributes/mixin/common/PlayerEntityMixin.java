@@ -1,24 +1,14 @@
 package de.dafuqs.additionalentityattributes.mixin.common;
 
-import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
-import de.dafuqs.additionalentityattributes.AdditionalEntityAttributes;
-import de.dafuqs.additionalentityattributes.AdditionalEntityAttributesEntityTags;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.attribute.DefaultAttributeContainer;
-import net.minecraft.entity.attribute.EntityAttributeInstance;
-import net.minecraft.entity.attribute.EntityAttributeModifier;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.math.Box;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.ModifyVariable;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-
-import java.util.List;
-import java.util.function.Predicate;
+import com.llamalad7.mixinextras.injector.*;
+import de.dafuqs.additionalentityattributes.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.attribute.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.util.math.*;
+import org.spongepowered.asm.mixin.*;
+import org.spongepowered.asm.mixin.injection.*;
+import org.spongepowered.asm.mixin.injection.callback.*;
 
 @Mixin(PlayerEntity.class)
 public abstract class PlayerEntityMixin {
@@ -65,28 +55,24 @@ public abstract class PlayerEntityMixin {
 		
 		return f;
 	}
-
+	
 	@ModifyVariable(method = "tickMovement", at = @At("STORE"))
-	private List<Entity> additionalEntityAttributes$adjustCollectionRange(List<Entity> original) {
+	private Box additionalEntityAttributes$adjustCollectionRange(Box original) {
 		PlayerEntity thisPlayer = (PlayerEntity)(Object) this;
+		
 		EntityAttributeInstance instance = thisPlayer.getAttributeInstance(AdditionalEntityAttributes.COLLECTION_RANGE);
-
-		if (instance != null && instance.getValue() > 0) {
-			Box expandedBox;
-			if (thisPlayer.hasVehicle() && !thisPlayer.getVehicle().isRemoved()) {
-				expandedBox = thisPlayer.getBoundingBox().union(thisPlayer.getVehicle().getBoundingBox()).expand(1.0, 0.0, 1.0).expand(instance.getValue());
-			} else {
-				expandedBox = thisPlayer.getBoundingBox().expand(1.0, 0.5, 1.0).expand(instance.getValue());
+		if (instance != null) {
+			double value = instance.getValue();
+			
+			// if the box is getting too small: returns a box of size 0
+			if (original.getLengthX() + value < 0) {
+				Vec3d center = original.getCenter();
+				return new Box(center.x, center.y, center.z, center.x, center.y, center.z);
 			}
-
-			original.addAll(thisPlayer.getWorld().getOtherEntities(thisPlayer, expandedBox, new Predicate<Entity>() {
-				@Override
-				public boolean test(Entity entity) {
-					EntityType<?> type = entity.getType();
-					return type.isIn(AdditionalEntityAttributesEntityTags.AFFECTED_BY_COLLECTION_RANGE) && !original.contains(entity);
-				}
-			}));
+			
+			return original.expand(value, value / 2, value);
 		}
+		
 		return original;
 	}
 	
