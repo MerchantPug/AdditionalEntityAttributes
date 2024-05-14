@@ -1,6 +1,6 @@
 package de.dafuqs.additionalentityattributes.mixin.common;
 
-import com.llamalad7.mixinextras.injector.ModifyReturnValue;
+import com.llamalad7.mixinextras.injector.*;
 import de.dafuqs.additionalentityattributes.*;
 import net.fabricmc.api.*;
 import net.minecraft.entity.*;
@@ -35,7 +35,6 @@ public abstract class LivingEntityMixin {
         info.getReturnValue().add(AdditionalEntityAttributes.MODEL_WIDTH);
         info.getReturnValue().add(AdditionalEntityAttributes.MODEL_HEIGHT);
         info.getReturnValue().add(AdditionalEntityAttributes.MOB_DETECTION_RANGE);
-        info.getReturnValue().add(AdditionalEntityAttributes.JUMP_HEIGHT);
         info.getReturnValue().add(AdditionalEntityAttributes.MAGIC_PROTECTION);
     }
 
@@ -52,7 +51,7 @@ public abstract class LivingEntityMixin {
         }
     }
 
-    @ModifyConstant(method = "swimUpward", constant = @Constant(doubleValue = 0.03999999910593033D))
+    @ModifyExpressionValue(method = "swimUpward", at = @At(value = "CONSTANT", args = "doubleValue=0.03999999910593033D"))
     public double additionalEntityAttributes$modifyUpwardSwimming(double original, TagKey<Fluid> fluid) {
         if (fluid == FluidTags.WATER) {
             EntityAttributeInstance waterSpeed = ((LivingEntity) (Object) this).getAttributeInstance(AdditionalEntityAttributes.WATER_SPEED);
@@ -70,7 +69,7 @@ public abstract class LivingEntityMixin {
     }
 
     @Environment(EnvType.CLIENT)
-    @ModifyConstant(method = "knockDownwards", constant = @Constant(doubleValue = -0.03999999910593033D))
+    @ModifyExpressionValue(method = "knockDownwards", at = @At(value = "CONSTANT", args = "doubleValue=-0.03999999910593033D"))
     public double additionalEntityAttributes$knockDownwards(double original) {
         EntityAttributeInstance waterSpeed = ((LivingEntity) (Object) this).getAttributeInstance(AdditionalEntityAttributes.WATER_SPEED);
         if (waterSpeed == null) {
@@ -83,7 +82,7 @@ public abstract class LivingEntityMixin {
         }
     }
 
-    @ModifyConstant(method = "travel", constant = {@Constant(doubleValue = 0.5D, ordinal = 0), @Constant(doubleValue = 0.5D, ordinal = 1), @Constant(doubleValue = 0.5D, ordinal = 2)})
+    @ModifyExpressionValue(method = "travel", at = {@At(value = "CONSTANT", args = "doubleValue=0.5D", ordinal = 0), @At(value = "CONSTANT", args = "doubleValue=0.5D", ordinal = 1), @At(value = "CONSTANT", args = "doubleValue=0.5D", ordinal = 2)})
     private double additionalEntityAttributes$increasedLavaSpeed(double original) {
         EntityAttributeInstance lavaSpeed = ((LivingEntity) (Object) this).getAttributeInstance(AdditionalEntityAttributes.LAVA_SPEED);
         if (lavaSpeed == null) {
@@ -117,31 +116,5 @@ public abstract class LivingEntityMixin {
             damage = (float) Math.max(damage - magicProt.getValue(), 0);
         }
         return damage;
-    }
-
-    @ModifyReturnValue(method = "getJumpVelocity(F)F", at = @At("RETURN"))
-    public float additionalEntityAttributes$modifyJumpVelocity(float original) {
-        EntityAttributeInstance instance = ((LivingEntity) (Object) this).getAttributeInstance(AdditionalEntityAttributes.JUMP_HEIGHT);
-
-        if (instance != null) {
-            float totalAmount = original;
-            for (EntityAttributeModifier modifier : instance.getModifiers()) {
-                float amount = (float) modifier.value();
-
-                if (modifier.operation() == EntityAttributeModifier.Operation.ADD_VALUE)
-                    totalAmount += amount;
-                else
-                    totalAmount *= (amount + 1);
-            }
-
-            // Players will run this method twice, so we have to do
-            // some math to make sure that it's accurate.
-            if ((LivingEntity)(Object)this instanceof PlayerEntity) {
-                totalAmount = original + (totalAmount - original) / 2;
-            }
-            original = totalAmount;
-        }
-
-        return original;
     }
 }

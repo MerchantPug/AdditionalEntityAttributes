@@ -36,7 +36,7 @@ public class AdditionalEntityAttributes implements ModInitializer {
 	 * For the sake of maneuverability and server performance it is capped at 1.
 	 * Stacks with dolphins grace and depth strider, albeit the latter has little felt effect at higher speeds.
 	 */
-	public static final RegistryEntry<EntityAttribute> WATER_SPEED = register("water_speed", 0.5, 0, 1);
+	public static final RegistryEntry<EntityAttribute> WATER_SPEED = register("generic.water_speed", 0.5, 0, 1);
 	
 	/**
 	 * Controls the vision of the player when in water by adjusting the fog distance
@@ -133,11 +133,6 @@ public class AdditionalEntityAttributes implements ModInitializer {
 	 * Controls the vision of the player when in lava by adjusting the fog distance
 	 */
 	public static final RegistryEntry<EntityAttribute> LAVA_VISIBILITY = register("player.lava_visibility", 1.0, 0, 1024.0);
-
-	/**
-	 * Controls the dig speed of the player
-	*/
-	public static final RegistryEntry<EntityAttribute> DIG_SPEED = register("player.dig_speed", 0.0D, 0.0D, 2048.0D);
 	
 	/**
 	 * Controls the drops the player gets when using enchantments, such as looting or fortune
@@ -157,12 +152,6 @@ public class AdditionalEntityAttributes implements ModInitializer {
 	 * - `BONUS_RARE_LOOT_ROLLS = 0.5` will result in another roll with 5% chance
 	 */
 	public static final RegistryEntry<EntityAttribute> BONUS_RARE_LOOT_ROLLS = register("player.bonus_rare_loot_rolls", 0.0D, 0.0D, 128.0);
-
-	/**
-	 * Controls the jump height of the player.
-	 * By default, the player jumps at a height of 0.42.
-	 */
-	public static final RegistryEntry<EntityAttribute> JUMP_HEIGHT = register("generic.jump_height", 0.0D, -1024.0, 1024.0);
 	
 	/**
 	 * Modifies the experience dropped from mining blocks and killing mobs.
@@ -177,10 +166,10 @@ public class AdditionalEntityAttributes implements ModInitializer {
 	public static final RegistryEntry<EntityAttribute> MAGIC_PROTECTION = register("generic.magic_protection", 0.0D, 0.0D, 1024.0D);
 
 	/**
-	 * Increases the range to collect items, blocks .
-	 * By default, the player has 0 points, and each point of reduces the damage taken by 1.
+	 * Increases the range to collect items and experience in blocks
+	 * By default, vanilla uses a hitbox that is 1 block bigger than the players hitbox (or their mount)
 	 */
-	public static final RegistryEntry<EntityAttribute> COLLECTION_RANGE = register("player.collection_range", 0.0D, 0.0D, 64.0D);
+	public static final RegistryEntry<EntityAttribute> COLLECTION_RANGE = register("player.collection_range", 0.0D, -64.0D, 64.0D);
 	
 	
 	private static RegistryEntry<EntityAttribute> register(final String name, double base, double min, double max) {
