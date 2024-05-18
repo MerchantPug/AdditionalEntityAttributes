@@ -127,8 +127,6 @@ public class AdditionalEntityAttributes implements ModInitializer {
 	 */
 	public static final RegistryEntry<EntityAttribute> MOB_DETECTION_RANGE = register("generic.mob_detection_range", 0.0, 0.0, 1024.0);
 
-
-
 	/**
 	 * Controls the vision of the player when in lava by adjusting the fog distance
 	 */

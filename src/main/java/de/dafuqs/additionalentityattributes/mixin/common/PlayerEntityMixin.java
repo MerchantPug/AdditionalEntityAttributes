@@ -22,15 +22,6 @@ public abstract class PlayerEntityMixin {
 		info.getReturnValue().add(AdditionalEntityAttributes.BONUS_RARE_LOOT_ROLLS);
 		info.getReturnValue().add(AdditionalEntityAttributes.DROPPED_EXPERIENCE);
 		info.getReturnValue().add(AdditionalEntityAttributes.COLLECTION_RANGE);
-		info.getReturnValue().add(AdditionalEntityAttributes.WIDTH);
-		info.getReturnValue().add(AdditionalEntityAttributes.HEIGHT);
-		info.getReturnValue().add(AdditionalEntityAttributes.HITBOX_SCALE);
-		info.getReturnValue().add(AdditionalEntityAttributes.HITBOX_WIDTH);
-		info.getReturnValue().add(AdditionalEntityAttributes.HITBOX_HEIGHT);
-		info.getReturnValue().add(AdditionalEntityAttributes.MODEL_SCALE);
-		info.getReturnValue().add(AdditionalEntityAttributes.MODEL_WIDTH);
-		info.getReturnValue().add(AdditionalEntityAttributes.MODEL_HEIGHT);
-		info.getReturnValue().add(AdditionalEntityAttributes.MOB_DETECTION_RANGE);
 	}
 	
 	/**
