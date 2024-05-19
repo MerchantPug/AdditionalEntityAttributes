@@ -55,7 +55,78 @@ public class AdditionalEntityAttributes implements ModInitializer {
 	 * Negative values will make the player even slower with -1.0 resulting in being almost unable to move
 	 */
 	public static final RegistryEntry<EntityAttribute> LAVA_SPEED = register("generic.lava_speed", 0.5, 0, 1);
-	
+
+
+	/**
+	 * Controls the player's width.
+	 * The default of 1.0 is an unmodified scale.
+	 * Stacks with vanilla's scale modifier and other AEA scale modifiers, but cannot go past
+	 * the min or max value of the original scale attribute.
+	 */
+	public static final RegistryEntry<EntityAttribute> WIDTH = register("generic.width", 1.0, 0.0625, 16.0);
+
+	/**
+	 * Controls the player's height.
+	 * The default of 1.0 is an unmodified scale.
+	 * Stacks with vanilla's scale modifier and other AEA scale modifiers, but cannot go past
+	 * the min or max value of the original scale attribute.
+	 */
+	public static final RegistryEntry<EntityAttribute> HEIGHT = register("generic.height", 1.0, 0.0625, 16.0);
+
+	/**
+	 * Controls the player's hitbox scale.
+	 * The default of 1.0 is an unmodified scale.
+	 * Stacks with vanilla's scale modifier and other AEA scale modifiers, but cannot go past
+	 * the min or max value of the original scale attribute.
+	 */
+	public static final RegistryEntry<EntityAttribute> HITBOX_SCALE = register("generic.hitbox_scale", 1.0, 0.0625, 16.0);
+
+	/**
+	 * Controls the player's hitbox width.
+	 * The default of 1.0 is an unmodified scale.
+	 * Stacks with vanilla's scale modifier and other AEA scale modifiers, but cannot go past
+	 * the min or max value of the original scale attribute.
+	 */
+	public static final RegistryEntry<EntityAttribute> HITBOX_WIDTH = register("generic.hitbox_width", 1.0, 0.0625, 16.0);
+
+	/**
+	 * Controls the player's hitbox height.
+	 * The default of 1.0 is an unmodified scale.
+	 * Stacks with vanilla's scale modifier and other AEA scale modifiers, but cannot go past
+	 * the min or max value of the original scale attribute.
+	 */
+	public static final RegistryEntry<EntityAttribute> HITBOX_HEIGHT = register("generic.hitbox_height", 1.0, 0.0625, 16.0);
+
+	/**
+	 * Controls the player's model scale.
+	 * The default of 1.0 is an unmodified scale.
+	 * Stacks with vanilla's scale modifier and other AEA scale modifiers, but cannot go past
+	 * the min or max value of the original scale attribute.
+	 */
+	public static final RegistryEntry<EntityAttribute> MODEL_SCALE = register("generic.model_scale", 1.0, 0.0625, 16.0);
+
+	/**
+	 * Controls the player's model width.
+	 * The default of 1.0 is an unmodified scale.
+	 * Stacks with vanilla's scale modifier and other AEA scale modifiers, but cannot go past
+	 * the min or max value of the original scale attribute.
+	 */
+	public static final RegistryEntry<EntityAttribute> MODEL_WIDTH = register("generic.model_width", 1.0, 0.0625, 16.0);
+
+	/**
+	 * Controls the player's model height.
+	 * The default of 1.0 is an unmodified scale.
+	 * Stacks with vanilla's scale modifier and other AEA scale modifiers, but cannot go past
+	 * the min or max value of the original scale attribute.
+	 */
+	public static final RegistryEntry<EntityAttribute> MODEL_HEIGHT = register("generic.model_height", 1.0, 0.0625, 16.0);
+
+	/**
+	 * Controls the range that the player can be detected by hostile mobs.
+	 * By default, this starts at 1.0, but may be different depending on a few factors.
+	 */
+	public static final RegistryEntry<EntityAttribute> MOB_DETECTION_RANGE = register("generic.mob_detection_range", 0.0, 0.0, 1024.0);
+
 	/**
 	 * Controls the vision of the player when in lava by adjusting the fog distance
 	 */
