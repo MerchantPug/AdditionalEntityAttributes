@@ -39,6 +39,8 @@ public abstract class PlayerEntityMixin {
 		}
 	}
 	
+	// since we filter on an entity tag here, we cannot simply expand the original box
+	// and therefore have to run a second `getOtherEntities` check :(
 	@ModifyVariable(method = "tickMovement", at = @At("STORE"))
 	private List<Entity> additionalEntityAttributes$adjustCollectionRange(List<Entity> original) {
 		PlayerEntity thisPlayer = (PlayerEntity)(Object) this;
