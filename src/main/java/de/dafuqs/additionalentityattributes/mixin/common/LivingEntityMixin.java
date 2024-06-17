@@ -19,7 +19,6 @@ public abstract class LivingEntityMixin {
     private static void additionalEntityAttributes$addAttributes(final CallbackInfoReturnable<DefaultAttributeContainer.Builder> info) {
         info.getReturnValue().add(AdditionalEntityAttributes.WATER_SPEED);
         info.getReturnValue().add(AdditionalEntityAttributes.LAVA_SPEED);
-        info.getReturnValue().add(AdditionalEntityAttributes.LUNG_CAPACITY);
         info.getReturnValue().add(AdditionalEntityAttributes.WIDTH);
         info.getReturnValue().add(AdditionalEntityAttributes.HEIGHT);
         info.getReturnValue().add(AdditionalEntityAttributes.HITBOX_SCALE);

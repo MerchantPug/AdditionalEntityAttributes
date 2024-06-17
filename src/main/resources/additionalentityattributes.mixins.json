@@ -8,7 +8,6 @@
     "common.BlockMixin",
     "common.CaveSpiderEntityMixin",
     "common.EnchantmentHelperMixin",
-    "common.EntityMixin",
     "common.LivingEntityMixin",
     "common.LivingEntityScaleMixin",
     "common.PlayerEntityMixin",

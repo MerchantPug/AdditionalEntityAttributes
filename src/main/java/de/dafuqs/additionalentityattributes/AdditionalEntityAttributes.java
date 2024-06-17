@@ -44,11 +44,6 @@ public class AdditionalEntityAttributes implements ModInitializer {
 	public static final RegistryEntry<EntityAttribute> WATER_VISIBILITY = register("player.water_visibility", 96.0, 0, 1024.0);
 
 	/**
-	 * Controls the maximum amount of air the entity can have, measured in ticks
-	 * This value modifies the natural value of Entity.getMaxAir()
-	 */
-	public static final RegistryEntry<EntityAttribute> LUNG_CAPACITY = register("generic.lung_capacity", 0.0, -40000, 40000);
-	/**
 	 * Controls the speed of the player when in lava
 	 * The base value of this attribute is always set dynamically, therefore setting it via a command will have no effect.
 	 * For the sake of maneuverability and server performance it is capped at 1.
