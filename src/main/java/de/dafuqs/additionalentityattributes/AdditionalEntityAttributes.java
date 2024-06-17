@@ -32,8 +32,8 @@ public class AdditionalEntityAttributes implements ModInitializer {
 	
 	/**
 	 * Controls the speed of the player when in water
-	 * The base value of this attribute is always set dynamically, therefore setting it via a command will have no effect.
-	 * For the sake of maneuverability and server performance it is capped at 1.
+	 * The base value of this attribute is always set dynamically, therefore, setting it via a command will have no effect.
+	 * For the sake of maneuverability and server performance, it is capped at 1.
 	 * Stacks with dolphins grace and depth strider, albeit the latter has little felt effect at higher speeds.
 	 */
 	public static final RegistryEntry<EntityAttribute> WATER_SPEED = register("generic.water_speed", 0.5, 0, 1);
@@ -45,13 +45,12 @@ public class AdditionalEntityAttributes implements ModInitializer {
 
 	/**
 	 * Controls the speed of the player when in lava
-	 * The base value of this attribute is always set dynamically, therefore setting it via a command will have no effect.
-	 * For the sake of maneuverability and server performance it is capped at 1.
+	 * The base value of this attribute is always set dynamically, therefore, setting it via a command will have no effect.
+	 * For the sake of maneuverability and server performance, it is capped at 1.
 	 * Negative values will make the player even slower with -1.0 resulting in being almost unable to move
 	 */
 	public static final RegistryEntry<EntityAttribute> LAVA_SPEED = register("generic.lava_speed", 0.5, 0, 1);
-
-
+	
 	/**
 	 * Controls the player's width.
 	 * The default of 1.0 is an unmodified scale.
@@ -129,18 +128,18 @@ public class AdditionalEntityAttributes implements ModInitializer {
 	
 	/**
 	 * Controls the drops the player gets when using enchantments, such as looting or fortune
-	 * (more precise: everything that uses the ApplyBonusLootFunction to increase drops based on an enchantments level)
-	 * Each full +1 on this stat will roll the bonus count another time. Highest one is kept.
+	 * (more precise: everything that uses the ApplyBonusLootFunction to increase drops based on an enchantment's level)
+	 * Each full +1 on this stat will roll the bonus count another time. The highest one is kept.
 	 */
 	public static final RegistryEntry<EntityAttribute> BONUS_LOOT_COUNT_ROLLS = register("player.bonus_loot_count_rolls", 0.0D, 0.0D, 128.0);
 
 	/**
-	 * If a loot table that does not have 100% chance (RandomChanceLootCondition, RandomChanceWithLootingLootCondition),
+	 * If a loot table that does not have a 100 % chance (RandomChanceLootCondition, RandomChanceWithLootingLootCondition),
 	 * increases the chance to get that drop up to the point that drop is guaranteed. Will not increase drop count.
-	 * Example: Zombies have a ~1% chance to drop 1 Iron Ingot. BONUS_RARE_LOOT_ROLLS increases that 1% chance (but will not make it drop 2 ingots)
+	 * Example: Zombies have a ~1% chance to drop an Iron Ingot. BONUS_RARE_LOOT_ROLLS increases that 1% chance (but will not make it drop 2 ingots)
 	 *
-	 * A value of 1.0 will result in 1 additional roll with the original chance. So if a drop has a 10% chance:
-	 * - `BONUS_RARE_LOOT_ROLLS=1.0` will roll another time with 10% chance
+	 * A value of 1.0 will result in one additional roll with the original chance. So if a drop has a 10% chance:
+	 * - `BONUS_RARE_LOOT_ROLLS = 1.0` will roll another time with 10% chance
 	 * - `BONUS_RARE_LOOT_ROLLS = 2.0` will result in another roll with 20% chance
 	 * - `BONUS_RARE_LOOT_ROLLS = 0.5` will result in another roll with 5% chance
 	 */
@@ -154,13 +153,13 @@ public class AdditionalEntityAttributes implements ModInitializer {
 
 	/**
 	 * Reduces the amount of magic damage taken.
-	 * By default, the player has 0 points, and each point of reduces the damage taken by 1.
+	 * By default, the player has 0 points, and each point reduces the damage taken by 1.
 	 */
 	public static final RegistryEntry<EntityAttribute> MAGIC_PROTECTION = register("generic.magic_protection", 0.0D, 0.0D, 1024.0D);
 
 	/**
 	 * Increases the range to collect items and experience in blocks
-	 * By default, vanilla uses a hitbox that is 1 block bigger than the players hitbox (or their mount)
+	 * By default, vanilla uses a hitbox that is one block bigger than the players hitbox (or their mount)
 	 */
 	public static final RegistryEntry<EntityAttribute> COLLECTION_RANGE = register("player.collection_range", 0.0D, -64.0D, 64.0D);
 	
