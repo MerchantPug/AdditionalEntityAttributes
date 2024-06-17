@@ -6,20 +6,14 @@ import net.fabricmc.api.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.attribute.*;
 import net.minecraft.entity.damage.*;
-import net.minecraft.entity.player.*;
 import net.minecraft.fluid.*;
 import net.minecraft.registry.tag.*;
-import org.jetbrains.annotations.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
 
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin {
-
-    @Shadow
-    @Nullable
-    protected PlayerEntity attackingPlayer;
 
     @Inject(method = "createLivingAttributes()Lnet/minecraft/entity/attribute/DefaultAttributeContainer$Builder;", require = 1, allow = 1, at = @At("RETURN"))
     private static void additionalEntityAttributes$addAttributes(final CallbackInfoReturnable<DefaultAttributeContainer.Builder> info) {
@@ -92,15 +86,6 @@ public abstract class LivingEntityMixin {
                 lavaSpeed.setBaseValue(original);
             }
             return lavaSpeed.getValue();
-        }
-    }
-
-    @ModifyArg(method = "dropXp()V", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/ExperienceOrbEntity;spawn(Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/util/math/Vec3d;I)V"), index = 2)
-    protected int additionalEntityAttributes$modifyExperience(int originalXP) {
-        if (this.attackingPlayer == null) {
-            return originalXP;
-        } else {
-            return (int) (originalXP * Support.getExperienceMod(this.attackingPlayer));
         }
     }
 

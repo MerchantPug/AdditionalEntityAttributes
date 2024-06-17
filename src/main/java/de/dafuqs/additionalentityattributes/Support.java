@@ -1,23 +1,20 @@
 package de.dafuqs.additionalentityattributes;
 
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.attribute.EntityAttribute;
-import net.minecraft.entity.attribute.EntityAttributeInstance;
-import net.minecraft.entity.attribute.EntityAttributeModifier;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.registry.entry.RegistryEntry;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.entity.*;
+import net.minecraft.entity.attribute.*;
+import net.minecraft.registry.entry.*;
+import net.minecraft.util.math.*;
 
 public class Support {
 
 	private static final double MIN_SCALE = 0.0625;
 	private static final double MAX_SCALE = 16.0;
-
-	public static float getExperienceMod(PlayerEntity player) {
-		if(player == null) {
+	
+	public static float getExperienceMod(LivingEntity entity) {
+		if (entity == null) {
 			return 1.0F;
 		}
-		EntityAttributeInstance attributeInstance = player.getAttributeInstance(AdditionalEntityAttributes.DROPPED_EXPERIENCE);
+		EntityAttributeInstance attributeInstance = entity.getAttributeInstance(AdditionalEntityAttributes.DROPPED_EXPERIENCE);
 		if (attributeInstance == null) {
 			return 1.0F;
 		}

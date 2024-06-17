@@ -172,7 +172,7 @@ public class AdditionalEntityAttributes implements ModInitializer {
 	
 	private static RegistryEntry<EntityAttribute> register(final String name, double base, double min, double max) {
 		EntityAttribute attribute = new ClampedEntityAttribute("attribute.name." + MOD_ID + '.' + name, base, min, max).setTracked(true);
-		return Registry.registerReference(Registries.ATTRIBUTE, new Identifier(MOD_ID, name), attribute);
+		return Registry.registerReference(Registries.ATTRIBUTE, Identifier.of(MOD_ID, name), attribute);
 	}
 
 	
