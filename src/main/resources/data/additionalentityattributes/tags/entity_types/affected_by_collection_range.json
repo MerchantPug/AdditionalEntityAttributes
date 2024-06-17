@@ -1,6 +1,8 @@
 {
   "values": [
     "minecraft:item",
-    "minecraft:experience_orb"
+    "minecraft:experience_orb",
+    "minecraft:arrow",
+    "minecraft:trident"
   ]
 }

@@ -10,6 +10,8 @@ import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
 
+import java.util.*;
+
 @Mixin(PlayerEntity.class)
 public abstract class PlayerEntityMixin {
 
@@ -38,22 +40,23 @@ public abstract class PlayerEntityMixin {
 	}
 	
 	@ModifyVariable(method = "tickMovement", at = @At("STORE"))
-	private Box additionalEntityAttributes$adjustCollectionRange(Box original) {
+	private List<Entity> additionalEntityAttributes$adjustCollectionRange(List<Entity> original) {
 		PlayerEntity thisPlayer = (PlayerEntity)(Object) this;
-		
 		EntityAttributeInstance instance = thisPlayer.getAttributeInstance(AdditionalEntityAttributes.COLLECTION_RANGE);
-		if (instance != null) {
-			double value = instance.getValue();
-			
-			// if the box is getting too small: returns a box of size 0
-			if (original.getLengthX() + value < 0) {
-				Vec3d center = original.getCenter();
-				return new Box(center.x, center.y, center.z, center.x, center.y, center.z);
+		
+		if (instance != null && instance.getValue() > 0) {
+			Box expandedBox;
+			if (thisPlayer.hasVehicle() && !thisPlayer.getVehicle().isRemoved()) {
+				expandedBox = thisPlayer.getBoundingBox().union(thisPlayer.getVehicle().getBoundingBox()).expand(1.0, 0.0, 1.0).expand(instance.getValue());
+			} else {
+				expandedBox = thisPlayer.getBoundingBox().expand(1.0, 0.5, 1.0).expand(instance.getValue());
 			}
 			
-			return original.expand(value, value / 2, value);
+			original.addAll(thisPlayer.getWorld().getOtherEntities(thisPlayer, expandedBox, entity -> {
+				EntityType<?> type = entity.getType();
+				return type.isIn(AdditionalEntityAttributesEntityTags.AFFECTED_BY_COLLECTION_RANGE) && !original.contains(entity);
+			}));
 		}
-		
 		return original;
 	}
 	
