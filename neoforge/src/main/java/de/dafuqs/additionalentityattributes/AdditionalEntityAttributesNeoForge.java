@@ -1,5 +1,6 @@
 package de.dafuqs.additionalentityattributes;
 
+import net.minecraft.core.registries.Registries;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -9,9 +10,15 @@ import net.neoforged.neoforge.registries.RegisterEvent;
 
 @EventBusSubscriber(modid = AdditionalEntityAttributes.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
 public class AdditionalEntityAttributesNeoForge {
+    /*
+     * We run the init method in RegisterEvent so we can register before freeze.
+     */
     @SubscribeEvent
     public static void registerContent(RegisterEvent event) {
-        AdditionalEntityAttributes.init();
+        // Let's not run the init method multiple times.
+        if (event.getRegistryKey() == Registries.ATTRIBUTE) {
+            AdditionalEntityAttributes.init();
+        }
     }
 
     @SubscribeEvent
