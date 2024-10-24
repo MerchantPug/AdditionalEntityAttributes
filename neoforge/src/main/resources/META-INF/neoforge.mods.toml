@@ -19,7 +19,7 @@ config = "additionalentityattributes.neoforge.mixins.json"
 [[dependencies.additionalentityattributes]]
 modId = "neoforge"
 type="required"
-versionRange = "[${neoforge_version},)"
+versionRange = "${neoforge_version_range}"
 ordering = "NONE"
 side = "BOTH"
 
